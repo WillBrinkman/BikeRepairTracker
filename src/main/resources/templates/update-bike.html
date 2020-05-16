@@ -7,7 +7,9 @@
 
 <h1>Update Form</h1>
 
-<form method="post" style="max-width:550px;">
+<form method="post" style="max-width:550px;" action="#"
+th:action="@{/update/{id}(id=${bike.id})}"
+th:object="${bike}">
 
     <div class="form-group">
         <label th:for="manufacturer">Manufacturer</label>

@@ -33,7 +33,7 @@ public class BikemodelController {
     }
 
     @PostMapping("new")
-    public String handleNewBikemodel( Errors errors, Model model,@ModelAttribute @Valid Bikemodel newBikemodel) {
+    public String handleNewBikemodel(  @ModelAttribute @Valid Bikemodel newBikemodel, Model model, Errors errors) {
 
         if (errors.hasErrors()) {
             return "bikemodel/new";

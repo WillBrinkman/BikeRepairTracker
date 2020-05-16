@@ -38,6 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.headers()
                 .frameOptions()
                 .sameOrigin();
+        httpSecurity.csrf().disable();
     }
 
 //                .antMatchers("/admin").hasRole("ADMIN")
@@ -49,7 +50,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .loginProcessingUrl("/login")
 //                .defaultSuccessUrl("/index.html",true);
 //               // .failureUrl("/login.html?error=true");
-//        http.csrf().disable();
 //        http.exceptionHandling().accessDeniedPage("/403");
 
 

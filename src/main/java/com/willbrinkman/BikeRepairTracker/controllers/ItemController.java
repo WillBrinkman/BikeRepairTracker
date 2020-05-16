@@ -19,8 +19,8 @@ public class ItemController {
 
     @GetMapping
     public String showAllItems(Model model) {
-        model.addAttribute("title", "All Skills");
-        model.addAttribute("skills", itemRepository.findAll());
+        model.addAttribute("title", "All Items");
+        model.addAttribute("items", itemRepository.findAll());
         return "items/index";
     }
 
