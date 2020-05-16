@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:replace="fragments :: head">
 </head>
 <body>
@@ -11,7 +12,9 @@
     <h1>Bike Repair Tracker</h1>
     <h2 th:text="${message}"></h2>
     <img src="bike_picture.png"  width = "120" height = "90">
+
 </div>
 
 </body>
 </html>
+

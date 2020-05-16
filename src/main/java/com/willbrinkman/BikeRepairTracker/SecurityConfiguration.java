@@ -24,22 +24,35 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     DataSource dataSource;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests()
+                .antMatchers("/h2-console/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin();
 
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/", "/index").permitAll()
-                .and().formLogin();
-        http.formLogin()
-                .loginPage("/login.html")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/index.html",true);
-               // .failureUrl("/login.html?error=true");
-        http.csrf().disable();
-        http.exceptionHandling().accessDeniedPage("/403");
-
+        httpSecurity.csrf()
+                .ignoringAntMatchers("/h2-console/**");
+        httpSecurity.headers()
+                .frameOptions()
+                .sameOrigin();
     }
+
+//                .antMatchers("/admin").hasRole("ADMIN")
+//                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
+//                .antMatchers("/", "/index").permitAll()
+//                .and().formLogin();
+//        http.formLogin()
+//                .loginPage("/login.html")
+//                .loginProcessingUrl("/login")
+//                .defaultSuccessUrl("/index.html",true);
+//               // .failureUrl("/login.html?error=true");
+//        http.csrf().disable();
+//        http.exceptionHandling().accessDeniedPage("/403");
+
+
 
 
 
@@ -47,16 +60,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
             auth.jdbcAuthentication()
-                    .dataSource(dataSource)
+                    .dataSource(dataSource);
 //                    .withUser(
 //                            User.withUsername("user")
 //                            .password("pass")
 //                            .roles("USER")
 //                    )
-                .usersByUsernameQuery(
-                        "select username,password, enabled " + "from user " + "where username =?")
-                .authoritiesByUsernameQuery(
-                        "select username,authority" + "from authorities" + "where  username=?");
+//                .usersByUsernameQuery(
+//                        "select username,password, enabled " + "from user " + "where username =?")
+//                .authoritiesByUsernameQuery(
+//                        "select username,authority" + "from authorities" + "where  username=?");
     }
 
     @Bean

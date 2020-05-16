@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html xmlns:th="http://www.thymeleaf.org/"  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head th:fragment="head">
 
@@ -22,6 +22,7 @@
                 <li><a th:href="@{/search}">Search Bikes</a></li>
                 <li><a th:href="@{/inventory}">Inventory</a></li>
                 <li><a>Cost Adjustment Form</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:text="Logout"  th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>
     </div>

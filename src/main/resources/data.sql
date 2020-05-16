@@ -1,7 +1,27 @@
-INSERT INTO users (username, password, enabled)
-  values ('user',
-    'password',
-    1);
-
-INSERT INTO authorities (username, authority)
-  values ('user', 'ROLE_USER');
+----INSERT INTO users (username, password, enabled)
+----  values ('user',
+----    'password',
+----    1);
+--
+--   IF NOT EXISTS (SELECT * FROM users
+--                   WHERE username = 'user'
+--                   AND password = 'password')
+--   THEN
+--            INSERT INTO users (username, password, enabled)
+--              values ('user', 'password', 1);
+--   END
+--
+--
+--
+----INSERT INTO authorities (username, authority)
+----  values ('user', 'ROLE_USER');
+--
+--
+--   IF NOT EXISTS (SELECT * FROM authorities
+--                   WHERE username = 'user'
+--                   AND authority = 'ROLE_USER')
+--   THEN
+--            INSERT INTO authorities (username, authority)
+--              values ('user', 'ROLE_USER');
+--   END
+SELECT * FROM USERS
