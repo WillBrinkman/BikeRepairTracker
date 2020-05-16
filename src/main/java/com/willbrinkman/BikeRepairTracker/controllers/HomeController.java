@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.willbrinkman.BikeRepairTracker.models.Manufacturer;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -113,6 +114,15 @@ public class HomeController {
         return "view";
     }
 
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+        Bike bike = bikeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        model.addAttribute("bike", bike);
+        return "update-user";
+    }
+
     @PostMapping("update/{bikeId}")
     public String handleUpdateBike(@PathVariable("id") int bikeId, @Valid Bike bike, Errors errors, Model model){
         Optional optionalBike = bikeRepository.findById(bikeId);
@@ -125,10 +135,11 @@ public class HomeController {
         return "update-bike";
     }
 
-    @GetMapping("delete/{bikeId}")
-    public String handleDeleteBike(@PathVariable("id") int bikeId, Model model){
-        Optional optionalBike = bikeRepository.findById(bikeId);
+    @GetMapping("delete/{id}")
+    public String handleDeleteBike(@PathVariable("id") int id, Model model){
+        Optional optionalBike = bikeRepository.findById(id);
         if (optionalBike.isPresent()) {
+
             Bike bike = (Bike) optionalBike.get();
             bikeRepository.delete(bike);
             model.addAttribute("bikes", bikeRepository.findAll());
@@ -136,6 +147,7 @@ public class HomeController {
         }
         return "index";
     }
+
 
 //    @GetMapping("/user/registration")
 //    public String showRegistrationForm(WebRequest request, Model model) {
