@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.willbrinkman.BikeRepairTracker.models.Manufacturer;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,18 +66,21 @@ public class HomeController {
     }
 
     @PostMapping("repairForm")
-    public String handleBikeRepairForm(@ModelAttribute @Valid Bike newBike, Errors errors, Model model,  @RequestParam int manufacturerId,@RequestParam int bikemodelId,@RequestParam int bikesizeId, @RequestParam List<Integer> items) {
+    public String handleBikeRepairForm(@ModelAttribute @Valid Bike newBike, Errors errors, Model model, RedirectAttributes redirectAttrs, @RequestParam int manufacturerId, @RequestParam int bikemodelId, @RequestParam int bikesizeId, @RequestParam List<Integer> items) {
+
+
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Bike");
-            return "repairForm";
+            return "/repairForm";
         } else {
             Optional<Manufacturer> OptionalManufacturer = manufacturerRepository.findById(manufacturerId);
             Optional<Bikemodel> OptionalBikemodel = bikemodelRepository.findById(bikemodelId);
             Optional<Bikesize> OptionalBikesize = bikesizeRepository.findById(bikesizeId);
 
             if (OptionalManufacturer.isEmpty() || OptionalBikemodel.isEmpty() || OptionalBikesize.isEmpty()) {
-                return "repairForm";
+
+                return "/repairForm";
             } else {
 
                 Manufacturer manufacturer = OptionalManufacturer.get();
@@ -95,10 +99,9 @@ public class HomeController {
                 model.addAttribute("bikesizes", bikesize);
 
             }
-             Object bikeId = model.getAttribute(String.valueOf(newBike.getId()));
-
-
-            return "redirect:view/11";
+            model.addAttribute(  "message","Bike has been created!");
+            redirectAttrs.addAttribute("newBikeId", newBike.getId());
+            return "redirect:/view/{newBikeId}";
         }
     }
 
@@ -109,6 +112,7 @@ public class HomeController {
             Bike bike = (Bike) optionalBike.get();
 
             model.addAttribute("bike", bike);
+            model.addAttribute("message", model.getAttribute("message"));
             return "view";
         }
         return "view";
@@ -138,6 +142,8 @@ public class HomeController {
     @GetMapping("delete/{id}")
     public String handleDeleteBike(@PathVariable("id") int id, Model model){
         Optional optionalBike = bikeRepository.findById(id);
+
+
         if (optionalBike.isPresent()) {
 
             Bike bike = (Bike) optionalBike.get();

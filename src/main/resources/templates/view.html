@@ -3,11 +3,13 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container  body-content">
-<h1 th:text="${'Bike ID: ' + bike.id}">Bikes</h1>
 
+<h1 th:text="${'Bike ID: ' + bike.id}">Bikes</h1>
+<h2 th:text="${message}"></h2>
 <nav th:replace="fragments :: page-header"></nav>
 
 <div class="bikes-inventory">
+
     <p th:text="${'ID: ' + bike.id}"></p>
     <p>
         Manufacturer: <a th:href="@{'/manufacturers/view/' + ${bike.manufacturer.id}}" th:text="${bike.manufacturer.name}"></a>
