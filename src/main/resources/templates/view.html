@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'Bike ID: ' + bike.id}">Bikes</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<div class="bikes-inventory">
+    <p th:text="${'ID: ' + bike.id}"></p>
+    <p>
+        Manufacturer: <a th:href="@{'/manufacturers/view/' + ${bike.manufacturer.id}}" th:text="${bike.manufacturer.name}"></a>
+    </p>
+    <p>
+        Bike Model: <a th:href="@{'/bikemodels/view/' + ${bike.bikemodel.id}}" th:text="${bike.bikemodel.name}"></a>
+    </p>
+    <p>
+        Bike Size: <a th:href="@{'/bikesizes/view/' + ${bike.bikesize.id}}" th:text="${bike.bikesize.name}"></a>
+    </p>
+    <p> Items Replaced:
+    <ul>
+        <li th:each="item : ${bike.items}">
+            <a th:href="@{'/items/view/' + ${item.id}}" th:text="${item.name}"></a>
+        </li>
+    </ul>
+    <p>Extra Info:
+        <a th:text="${bike.name}"></a>
+    </p>
+      <td><a th:href="@{/edit/{id}(id=${bike.id})}">Edit Bike</a></td>
+     <td><a th:href="@{/delete/{id}(id=${bike.id})}">Delete Bike</a></td>
+
+</div>
+
+
+</body>
+</html>

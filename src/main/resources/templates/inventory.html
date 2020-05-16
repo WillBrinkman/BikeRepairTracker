@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <h2 class = "centered">Bike Inventory</h2>
+</div>
+
+<table class="centeredTable">
+    <tr>
+        <th>Manufacturers</th>
+        <th>Bike Models</th>
+        <th>Bike Sizes</th>
+    </tr>
+    <tr>
+        <td>
+            <li style="list-style: none;" th:each="manufacturer : ${manufacturers}">
+                <a th:href="@{/inventory/bikes(filter=manufacturer,value=${manufacturer.name})}" th:text="${manufacturer.name}"></a>
+            </li>
+        </td>
+        <td>
+            <li style="list-style: none;" th:each="bikemodel : ${bikemodels}">
+                <a th:href="@{/inventory/bikes(filter=bikemodel,value=${bikemodel.name})}" th:text="${bikemodel.name}"></a>
+            </li>
+        </td>
+        <td>
+            <li style="list-style: none;" th:each="bikesize : ${bikesizes}">
+                <a th:href="@{/inventory/bikes(filter=bikesize,value=${bikesize.name})}" th:text="${bikesize.name}"></a>
+            </li>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

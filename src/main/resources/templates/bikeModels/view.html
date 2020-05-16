@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'Model: ' + bikemodel.name}">Model</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<div class="bikes-inventory">
+    <p> Bikes:
+    <ul style="list-style: none;">
+        <li th:each="bike : ${bikemodel.bikes}">
+            <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>
+        </li>
+    </ul>
+    </p>
+</div>
+</body>
+</html>

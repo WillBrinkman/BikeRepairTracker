@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<p th:unless="${manufacturer} and ${manufacturer.size()}">There are no bikes in Inventory</p>
+
+<div class="container body-content">
+    <h3>Manufacturers</h3>
+    <ul>
+        <li th:each="manufacturer : ${manufacturers}">
+            <a th:href="@{'/manufacturer/view/' + ${manufacturer.id}}" th:text="${manufacturer.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/manufacturers/new'}">Add Manufacturer</a>
+
+</div>
+
+</body>
+</html>

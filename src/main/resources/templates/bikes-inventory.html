@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+    <table class="bike-inventory">
+        <tr th:each="bike : ${bikes}">
+            <td>
+                <p>
+                    Bike Id:
+                    <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>
+                </p>
+                <p>
+                        Manufacturer:
+                        <a th:href="@{'/manufacturers/view/' + ${bike.manufacturer.id}}" th:text="${bike.manufacturer.name}"></a>
+                </p>
+                <p>
+                        Model:
+                    <a th:href="@{'/bikemodels/view/' + ${bike.bikemodel.id}}" th:text="${bike.bikemodel.name}"></a>
+                </p>
+                <p>
+                         Size:
+                    <a th:href="@{'/bikesizes/view/' + ${bike.bikesize.id}}" th:text="${bike.bikesize.name}"></a>
+                </p>
+                <p>
+                    Extra Info:
+                    <a th:text="${ bike.name}"></a>
+                </p>
+                <p>
+            </td>
+            <td>
+                        Items Replaced:
+                    <ul style="list-style: none;" th:each="item : ${bike.items}">
+                        <li>
+                            <a th:href="@{'/items/view/' + ${item.id}}" th:text="${item.name}"></a>
+                        </li>
+                    </ul>
+                </p>
+
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

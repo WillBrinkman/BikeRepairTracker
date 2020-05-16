@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'Item: ' + item.name}">Item Replaced</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<div class="bikes-inventory">
+
+    <p th:text="${'Bike IDs that have  ' + item.name} + ': '"></p>
+    <ul>
+        <li class="inline-list" th:each="bike : ${item.bikes}">
+            <a th:href="@{'/view/' + ${bike.id}} " th:text="${bike.id}+','">,</a>
+        </li>
+    </ul>
+
+
+</div>
+</body>
+</html>

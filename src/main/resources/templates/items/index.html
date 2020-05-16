@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<p th:unless="${items} and ${items.size()}">There are no bikes in Inventory</p>
+
+<div class="container body-content">
+    <h3>Replaceable Items</h3>
+    <ul>
+        <li th:each="item : ${items}">
+            <a th:href="@{'/items/view/' + ${item.id}}" th:text="${item.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/items/new'}">Add Item</a>
+
+</div>
+
+</body>
+</html>
