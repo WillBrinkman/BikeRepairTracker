@@ -123,7 +123,7 @@ public class HomeController {
         return "update-user";
     }
 
-    @PostMapping("update/{bikeId}")
+    @PostMapping("update/{id}")
     public String handleUpdateBike(@PathVariable("id") int bikeId, @Valid Bike bike, Errors errors, Model model){
         Optional optionalBike = bikeRepository.findById(bikeId);
         if (optionalBike.isPresent()) {
@@ -143,6 +143,7 @@ public class HomeController {
             Bike bike = (Bike) optionalBike.get();
             bikeRepository.delete(bike);
             model.addAttribute("bikes", bikeRepository.findAll());
+            model.addAttribute("message", "Successfully deleted Bike "+ id);
             return "index";
         }
         return "index";
