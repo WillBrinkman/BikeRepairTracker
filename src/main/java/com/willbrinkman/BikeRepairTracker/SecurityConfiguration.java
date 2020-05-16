@@ -33,10 +33,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin();
         http.formLogin()
                 .loginPage("/login.html")
-                .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/index.html",true)
-                .failureUrl("/login.html?error=true");
-       // http.csrf().disable();
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/index.html",true);
+               // .failureUrl("/login.html?error=true");
+        http.csrf().disable();
         http.exceptionHandling().accessDeniedPage("/403");
 
     }

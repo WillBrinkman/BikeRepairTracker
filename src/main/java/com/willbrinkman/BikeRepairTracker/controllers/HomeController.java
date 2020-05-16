@@ -39,7 +39,7 @@ public class HomeController {
 
         //model.addAttribute("title", "Bikes");
 
-        return "login";
+        return "index";
     }
 
     @GetMapping("/user")
@@ -139,7 +139,6 @@ public class HomeController {
 
 //    @GetMapping("/user/registration")
 //    public String showRegistrationForm(WebRequest request, Model model) {
-//        UserDto userDto = new UserDto();
 //        model.addAttribute("user", userDto);
 //        return "registration";
 //    }
