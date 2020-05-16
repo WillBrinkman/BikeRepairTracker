@@ -8,13 +8,17 @@
 <nav th:replace="fragments :: page-header"></nav>
 
 <div class="bike-inventory">
-    <p> Bikes:
-    <ul style="list-style: none;">
-        <li th:each="bike : ${manufacturer.bikes}">
-            <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>
-        </li>
-    </ul>
+<!--    <p> Bikes:-->
+<!--    <ul style="list-style: none;">-->
+<!--        <li th:each="bike : ${manufacturer.bikes}">-->
+<!--            <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>-->
+<!--        </li>-->
+    <p>
+        Bikes:
+        <a th:href="@{'/inventory/bikes?filter=manufacturer&value=' + ${manufacturer.name}}" th:text="${manufacturer.name}"></a>
     </p>
+<!--    </ul>-->
+<!--    </p>-->
 </div>
 </body>
 </html>

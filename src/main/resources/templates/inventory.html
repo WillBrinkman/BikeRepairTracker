@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html xmlns:th="http://www.thymeleaf.org/" xmlns:text-align="http://www.w3.org/1999/xhtml"
+      xmlns:display="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head">
 </head>
 <body>
@@ -29,7 +30,7 @@
             </li>
         </td>
         <td>
-            <li style="list-style: none;" th:each="bikesize : ${bikesizes}">
+            <li text-align: center; display: inline-block; style="list-style: none;" th:each="bikesize : ${bikesizes}">
                 <a th:href="@{/inventory/bikes(filter=bikesize,value=${bikesize.name})}" th:text="${bikesize.name}"></a>
             </li>
         </td>

@@ -51,17 +51,29 @@
                     Bike Id:
                     <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>
                 </p>
+<!--                <p>-->
+<!--                    Manufacturer:-->
+<!--                    <a th:href="@{'/manufacturers/view/' + ${bike.manufacturer.id}}" th:text="${bike.manufacturer.name}"></a>-->
+<!--                </p>-->
                 <p>
                     Manufacturer:
-                    <a th:href="@{'/manufacturers/view/' + ${bike.manufacturer.id}}" th:text="${bike.manufacturer.name}"></a>
+                    <a th:href="@{'/inventory/bikes?filter=manufacturer&value=' + ${bike.manufacturer.name}}" th:text="${bike.manufacturer.name}"></a>
                 </p>
                 <p>
                     Model:
                     <a th:href="@{'/bikemodels/view/' + ${bike.bikemodel.id}}" th:text="${bike.bikemodel.name}"></a>
                 </p>
                 <p>
+                    Model:
+                    <a th:href="@{'/inventory/bikes?filter=bikemodel&value=' + ${bike.bikemodel.name}}" th:text="${bike.bikemodel.name}"></a>
+                </p>
+<!--                <p>-->
+<!--                    Size:-->
+<!--                    <a th:href="@{'/bikesizes/view/' + ${bike.bikesize.id}}" th:text="${bike.bikesize.name}"></a>-->
+<!--                </p>-->
+                <p>
                     Size:
-                    <a th:href="@{'/bikesizes/view/' + ${bike.bikesize.id}}" th:text="${bike.bikesize.name}"></a>
+                    <a th:href="@{'/inventory/bikes?filter=bikesize&value=' + ${bike.bikesize.name}}" th:text="${bike.bikesize.name}"></a>
                 </p>
             </td>
             <td>

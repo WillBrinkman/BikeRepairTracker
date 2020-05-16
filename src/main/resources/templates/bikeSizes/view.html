@@ -10,9 +10,12 @@
 <div class="bikes-inventory">
     <p> Bikes:
     <ul style="list-style: none;">
-        <li th:each="bike : ${bikesize.bikes}">
-            <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>
-        </li>
+<!--        <li th:each="bike : ${bikesize.bikes}">-->
+<!--            <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>-->
+<!--        </li>-->
+    <li class="inline-list" th:each="bike : ${bikesize.bikes}">
+        <a th:href="@{'/view/' + ${bike.id}} " th:text="${bike.id}+','">,</a>
+    </li>
     </ul>
     </p>
 
