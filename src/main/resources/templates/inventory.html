@@ -3,7 +3,7 @@
       xmlns:display="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head">
 </head>
-<body>
+<body class="container-fluid">
 
 <div th:replace="fragments :: page-header"></div>
 
@@ -11,31 +11,55 @@
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
     <h2 align="center" style="font-size: 50px">Bike Inventory</h2>
 </div>
-
-<table class="centeredTable">
-    <tr style="font-size: 30px">
-        <th>Manufacturers</th>
-        <th>Bike Models</th>
-        <th>Bike Sizes</th>
-    </tr>
-    <tr >
-        <td align="center">
+<div class="container-fluid">
+    <div class="row text-center">
+        <div class="col-md-4 well">
+            <h1>Manufacturers</h1>
             <li style="list-style: none; font-size:20px" th:each="manufacturer : ${manufacturers}">
                 <a th:href="@{/inventory/bikes(filter=manufacturer,value=${manufacturer.name})}" th:text="${manufacturer.name}"></a>
             </li>
-        </td>
-        <td align = "center">
+        </div>
+
+        <div class="col-md-4 well">
+            <h1>Bike Models</h1>
             <li style="list-style: none; font-size:20px" th:each="bikemodel : ${bikemodels}">
                 <a th:href="@{/inventory/bikes(filter=bikemodel,value=${bikemodel.name})}" th:text="${bikemodel.name}"></a>
             </li>
-        </td>
-        <td align = "center">
-            <li style="list-style: none; font-size:30px" th:each="bikesize : ${bikesizes}">
+        </div>
+
+        <div class="col-md-4 well">
+            <h1>Bike Sizes</h1>
+            <li style="list-style: none; font-size:25px" th:each="bikesize : ${bikesizes}">
                 <a th:href="@{/inventory/bikes(filter=bikesize,value=${bikesize.name})}" th:text="${bikesize.name}"></a>
             </li>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+</div>
+
+<!--<table class="centeredTable">-->
+<!--    <tr style="font-size: 30px">-->
+<!--        <th>Manufacturers</th>-->
+<!--        <th>Bike Models</th>-->
+<!--        <th>Bike Sizes</th>-->
+<!--    </tr>-->
+<!--    <tr >-->
+<!--        <td align="center">-->
+<!--            <li style="list-style: none; font-size:20px" th:each="manufacturer : ${manufacturers}">-->
+<!--                <a th:href="@{/inventory/bikes(filter=manufacturer,value=${manufacturer.name})}" th:text="${manufacturer.name}"></a>-->
+<!--            </li>-->
+<!--        </td>-->
+<!--        <td align = "center">-->
+<!--            <li style="list-style: none; font-size:20px" th:each="bikemodel : ${bikemodels}">-->
+<!--                <a th:href="@{/inventory/bikes(filter=bikemodel,value=${bikemodel.name})}" th:text="${bikemodel.name}"></a>-->
+<!--            </li>-->
+<!--        </td>-->
+<!--        <td align = "center">-->
+<!--            <li style="list-style: none; font-size:25px" th:each="bikesize : ${bikesizes}">-->
+<!--                <a th:href="@{/inventory/bikes(filter=bikesize,value=${bikesize.name})}" th:text="${bikesize.name}"></a>-->
+<!--            </li>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
 
 </body>
 </html>
