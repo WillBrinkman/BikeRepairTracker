@@ -3,6 +3,7 @@ package com.willbrinkman.BikeRepairTracker.controllers;
 import com.willbrinkman.BikeRepairTracker.models.*;
 import com.willbrinkman.BikeRepairTracker.models.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,15 +20,39 @@ import java.util.Optional;
 @RequestMapping(value = "itemCostForm")
 public class ItemCostFormController {
 
-//    @Autowired
-//    private ItemRepository itemRepository;
-//
-////
+    @Autowired
+    private ItemRepository itemRepository;
+
+
 //    public Double CostFormController(Item item, double theItemAndRepairCost) {
 //        item.setItemAndRepairCost(theItemAndRepairCost);
 //        return item.getItemAndRepairCost();
 //    }
+
+    @Secured({ "ROLE_ADMIN" })
+    @GetMapping("/itemCostForm/{id}")
+    public String showUpdateItemForm(@PathVariable("id") int id, Model model) {
+                Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid item Id:" + id));
+        model.addAttribute("title", "Update Item");
+        model.addAttribute(new Item());
+        return "items/new";
+    }
+
+    @Secured({ "ROLE_ADMIN" })
+    @PostMapping("/updateItemCost/{id}")
+    public String handleUpdateItemForm(@PathVariable("id") int id,@ModelAttribute @Valid Item updatedItem,
+                                    Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+            return "update-item";
+        }
+
+        itemRepository.save(updatedItem);
+        return "redirect:";
+    }
 //
+//    @Secured({ "ROLE_ADMIN" })
 //    @GetMapping("/itemCostForm/{id}")
 //    public String showUpdateForm(@PathVariable("id") int id, Model model) {
 //        Item item = itemRepository.findById(id)
@@ -37,6 +62,7 @@ public class ItemCostFormController {
 //        return "update-item";
 //    }
 //
+//    @Secured({ "ROLE_ADMIN" })
 //    @PostMapping("/updateItemCost/{id}")
 //    public String updateItem(@PathVariable("id") long id, Item newItem, @Valid Item item,
 //                             Errors errors, Model model, RedirectAttributes redirectAttrs, @RequestParam int itemId) {
@@ -45,19 +71,12 @@ public class ItemCostFormController {
 //            return "/update-item";
 //        } else {
 //
-//
-//                newItem.setItemAndRepairCost();
-//
-//
-//                List<Item> itemObjects = (List<Item>) itemRepository.findAllById(items);
-//                newItem.setItemAndRepairCost(itemObjects);
 //                itemRepository.save(newItem);
-//                model.addAttribute("itemAndRepairCost", manufacturer);
 //
 //            }
 //            model.addAttribute(  "message","Bike has been created!");
-//            redirectAttrs.addAttribute("newBikeId", newBike.getId());
-//            return "redirect:/view/{newBikeId}";
+//            redirectAttrs.addAttribute("newItemId", newItem.getId());
+//            return "redirect:/items/view/{newItemId}";
 //        }
 //    }
 

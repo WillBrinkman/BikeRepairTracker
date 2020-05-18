@@ -3,6 +3,8 @@ package com.willbrinkman.BikeRepairTracker.controllers;
 import com.willbrinkman.BikeRepairTracker.models.*;
 import com.willbrinkman.BikeRepairTracker.models.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,8 +41,16 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index(Model model) {
+        String username;
 
         //model.addAttribute("title", "Bikes");
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+             username = ((UserDetails)principal).getUsername();
+        } else {
+             username = principal.toString();
+        }
+        System.out.println("Hello " + username );
 
         return "index";
     }
@@ -69,7 +79,7 @@ public class HomeController {
     @PostMapping("repairForm")
     public String handleBikeRepairForm(@ModelAttribute @Valid Bike newBike, Errors errors, Model model, RedirectAttributes redirectAttrs, @RequestParam int manufacturerId, @RequestParam int bikemodelId, @RequestParam int bikesizeId, @RequestParam List<Integer> items) {
 
-
+        String theUserWhoRepaired;
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Bike");
@@ -92,8 +102,28 @@ public class HomeController {
                 newBike.setBikemodel(bikemodel);
                 newBike.setBikesize(bikesize);
 
+                Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                if (principal instanceof UserDetails) {
+                    theUserWhoRepaired = ((UserDetails)principal).getUsername();
+                } else {
+                    theUserWhoRepaired = principal.toString();
+                }
+
+                newBike.setUserWhoRepaired(theUserWhoRepaired);
+
                 List<Item> itemObjects = (List<Item>) itemRepository.findAllById(items);
                 newBike.setItems(itemObjects);
+
+                List<Item> newBikeItems = newBike.getItems();
+
+
+
+                double newBikeRepairCost = 0;
+
+                for(Item item  : newBikeItems)
+                    newBikeRepairCost += item.getItemAndRepairCost();
+                newBike.setRepairCost(newBikeRepairCost);
+
                 bikeRepository.save(newBike);
                 model.addAttribute("manufacturers", manufacturer);
                 model.addAttribute("bikemodels", bikemodel);

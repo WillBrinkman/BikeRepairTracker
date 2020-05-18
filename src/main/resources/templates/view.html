@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:white-space="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 
 <body class="container  body-content">
@@ -21,9 +21,17 @@
         Bike Size: <a th:href="@{'/bikesizes/view/' + ${bike.bikesize.id}}" th:text="${bike.bikesize.name}"></a>
     </p>
 
-    <p>Extra Info:
-        <a th:text="${bike.name}"></a>
+    <p white-space="nowrap">Extra Info:
+        <p display="inLine" th:text="${bike.name}"></p>
     </p>
+
+        <p white-space="nowrap" > Repaired By:
+            <p display="inLine" th:text="${bike.userWhoRepaired}"></p>
+        </p>
+
+        <p white-space="nowrap" > Bike Repair Cost:
+        <p display="inLine" th:text="'$'+${bike.RepairCost}"></p>
+        </p>
 <!--    <p>Created By:-->
 <!--        <a th:text="${bike.createdByUser}"></a>-->
 <!--    </p>-->

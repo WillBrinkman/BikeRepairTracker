@@ -1,5 +1,6 @@
 package com.willbrinkman.BikeRepairTracker.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -22,12 +23,17 @@ public class Bike extends AbstractEntity{
     @ManyToMany
     private List<Item> items = new ArrayList<>();
 
-    private String createdByUser;
+    @Column(name = "user_who_repaired")
+    private String userWhoRepaired;
+
+    @Column(name = "repair_cost")
+    public Double RepairCost;
 
 
 
     public Bike() {
     }
+
 
 
 
@@ -37,7 +43,6 @@ public class Bike extends AbstractEntity{
         this.bikemodel = aBikemodel;
         this.bikesize = aBikesize;
         this.items = theItems;
- //       this.createdByUser = theUser;
     }
 
     public Manufacturer getManufacturer() {
@@ -76,11 +81,19 @@ public class Bike extends AbstractEntity{
         this.items = items;
     }
 
-//    public String getUser() {
-//        return createdByUser;
-//    }
-//
-//    public void setUser(String user) {
-//        this.createdByUser = user;
-//    }
+    public String getUserWhoRepaired() {
+        return userWhoRepaired;
+    }
+
+    public void setUserWhoRepaired(String userWhoRepaired) {
+        this.userWhoRepaired = userWhoRepaired;
+    }
+
+    public Double getRepairCost() {
+        return RepairCost;
+    }
+
+    public void setRepairCost(Double repairCost) {
+        RepairCost = repairCost;
+    }
 }

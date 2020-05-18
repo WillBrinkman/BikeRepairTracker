@@ -4,6 +4,7 @@
 
 <body class="container  body-content">
 <h1 th:text="${'Item: ' + item.name}">Item Replaced</h1>
+<h3 th:text="${'Item cost and repair cost: $' + item.itemAndRepairCost}">Item and repair cost</h3>
 
 <nav th:replace="fragments :: page-header"></nav>
 

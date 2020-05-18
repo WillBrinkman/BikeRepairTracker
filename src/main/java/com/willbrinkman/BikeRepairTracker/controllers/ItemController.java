@@ -3,6 +3,7 @@ package com.willbrinkman.BikeRepairTracker.controllers;
 import com.willbrinkman.BikeRepairTracker.models.Item;
 import com.willbrinkman.BikeRepairTracker.models.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -24,6 +25,7 @@ public class ItemController {
         return "items/index";
     }
 
+    @Secured({ "ROLE_ADMIN" })
     @GetMapping("new")
     public String showNewItemForm(Model model) {
         model.addAttribute("title", "Add Item");
@@ -31,6 +33,7 @@ public class ItemController {
         return "items/new";
     }
 
+    @Secured({ "ROLE_ADMIN" })
     @PostMapping("new")
     public String handleNewItemForm(@ModelAttribute @Valid Item newItem,
                                       Errors errors, Model model) {

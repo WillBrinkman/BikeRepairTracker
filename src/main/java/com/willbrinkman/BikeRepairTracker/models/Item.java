@@ -16,6 +16,10 @@ public class  Item extends AbstractEntity{
     @ManyToMany(mappedBy = "items")
     private List<Bike> bikes;
 
+
+
+    private Double itemAndRepairCost;
+
     public Double getItemAndRepairCost() {
         return itemAndRepairCost;
     }
@@ -23,9 +27,6 @@ public class  Item extends AbstractEntity{
     public void setItemAndRepairCost(Double itemAndRepairCost) {
         this.itemAndRepairCost = itemAndRepairCost;
     }
-
-    private Double itemAndRepairCost;
-
 
     public List<Bike> getBikes() {
         return bikes;
