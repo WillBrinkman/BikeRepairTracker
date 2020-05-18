@@ -28,11 +28,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests()
                 .antMatchers("/h2-console/**")
                 .permitAll()
+                .antMatchers("/items/edit/*").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin();
-
+        httpSecurity.exceptionHandling().accessDeniedPage("/403");
         httpSecurity.csrf()
                 .ignoringAntMatchers("/h2-console/**");
         httpSecurity.headers()
@@ -50,9 +51,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .loginProcessingUrl("/login")
 //                .defaultSuccessUrl("/index.html",true);
 //               // .failureUrl("/login.html?error=true");
-//        http.exceptionHandling().accessDeniedPage("/403");
-
-
 
 
 

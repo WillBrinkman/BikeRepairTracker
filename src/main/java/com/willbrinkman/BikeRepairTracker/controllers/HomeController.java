@@ -227,6 +227,11 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/403")
+    public String accessDenied(){
+        return "403";
+    }
+
 
 //    @GetMapping("/user/registration")
 //    public String showRegistrationForm(WebRequest request, Model model) {

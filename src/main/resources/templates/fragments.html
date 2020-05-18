@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav">
                 <li></li>
                 <li><a th:href="@{/repairForm}">Repair Form</a></li>
-                <li sec:authorize access="hasAnyRole('ROLE_ADMIN')"><a>Cost Adjustment Form</a></li>
+                <li sec:authorize access="hasRole('ROLE_ADMIN')"><a>Cost Adjustment Form</a></li>
                 <li><a th:href="@{/search}">Search Bikes</a></li>
                 <li><a th:href="@{/inventory}">Inventory</a></li>
 

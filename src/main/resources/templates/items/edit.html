@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container  body-content">
+<h2>Edit Item</h2>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<form method="post" style="max-width:550px;">
+    <div class="form-group">
+        <label th:for="name">Replaceable Item</label>
+        <input class="form-control" th:field="${item.name}" />
+        <span th:errors="${item.name}" class="error"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label th:for="itemAndRepairCost">Item Cost</label>
+        <input class="form-control" th:field="${item.itemAndRepairCost}" />
+        <span th:errors="${item.itemAndRepairCost}" class="error"></span>
+    </div>
+
+
+    <input type="submit" value="Update Item" />
+</form>
+
+</body>
+</html>

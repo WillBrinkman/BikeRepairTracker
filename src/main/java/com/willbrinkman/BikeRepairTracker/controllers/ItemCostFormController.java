@@ -29,7 +29,7 @@ public class ItemCostFormController {
 //        return item.getItemAndRepairCost();
 //    }
 
-    @Secured({ "ROLE_ADMIN" })
+   // @Secured({ "ROLE_ADMIN" })
     @GetMapping("/itemCostForm/{id}")
     public String showUpdateItemForm(@PathVariable("id") int id, Model model) {
                 Item item = itemRepository.findById(id)
@@ -39,7 +39,7 @@ public class ItemCostFormController {
         return "items/new";
     }
 
-    @Secured({ "ROLE_ADMIN" })
+//    @Secured({ "ROLE_ADMIN" })
     @PostMapping("/updateItemCost/{id}")
     public String handleUpdateItemForm(@PathVariable("id") int id,@ModelAttribute @Valid Item updatedItem,
                                     Errors errors, Model model) {
@@ -51,7 +51,19 @@ public class ItemCostFormController {
         itemRepository.save(updatedItem);
         return "redirect:";
     }
-//
+
+//    @GetMapping("/edit/{id}")
+//    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+//        Bike bike = bikeRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid bike Id:" + id));
+//        model.addAttribute("manufacturers", manufacturerRepository.findAll());
+//        model.addAttribute("bikemodels", bikemodelRepository.findAll());
+//        model.addAttribute("bikesizes", bikesizeRepository.findAll());
+//        model.addAttribute("items", itemRepository.findAll());
+//        model.addAttribute("bike", bike);
+//        return "update-bike";
+//    }
+////
 //    @Secured({ "ROLE_ADMIN" })
 //    @GetMapping("/itemCostForm/{id}")
 //    public String showUpdateForm(@PathVariable("id") int id, Model model) {

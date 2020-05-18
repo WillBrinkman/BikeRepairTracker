@@ -35,7 +35,7 @@
 <!--    <p>Created By:-->
 <!--        <a th:text="${bike.createdByUser}"></a>-->
 <!--    </p>-->
-     <p><a th:href="@{/edit/{id}(id=${bike.id})}">Edit Bike</a></p>
+     <button class="btn btn-info">Edit</button><a th:href="@{/edit/{id}(id=${bike.id})}">Edit Bike</a></p>
     <p><a th:href="@{/delete/{id}(id=${bike.id})}" class="btn btn-danger">Delete Bike</a>
     </p>
 </div>
