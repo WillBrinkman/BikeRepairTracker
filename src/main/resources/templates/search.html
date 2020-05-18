@@ -14,8 +14,8 @@
 
 
 
-            <h3 align="center" style="font-size: 50px">Search Bikes</h3>
-        <p align="center">
+            <h3 class="text-center" style="font-size: 50px">Search Bikes</h3>
+        <p class="text-center">
         <span
                 class="form-group">
             <label style="font-size:20px" th:for="column.key">Search filter:</label>
@@ -30,10 +30,10 @@
 
 
 
-        <p align="center">
+        <p class="text-center">
             <label for="searchQuery"></label>
             <input type="text" name="searchQuery" id="searchQuery" />
-            <input type="submit" value="Search" />
+            <input class="btn btn-info" type="submit" value="Search" />
         </p>
         <h3 align="center" th:text="${#strings.capitalizeWords(title)}"></h3>
 
@@ -45,7 +45,7 @@
     <hr />
 
 <div class="text-center bikes-inventory" style="font-size: 20px" >
-
+    <h3> Found <span th:text="${numBikes}"></span> bikes.</h3>
     <div class="well" style="margin-bottom: 10px" th:each="bike : ${bikes}">
         <div class="row">
             <div class="col-md-4">

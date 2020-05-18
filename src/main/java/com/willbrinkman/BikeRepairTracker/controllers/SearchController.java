@@ -2,6 +2,7 @@ package com.willbrinkman.BikeRepairTracker.controllers;
 
 import com.willbrinkman.BikeRepairTracker.models.Bike;
 import com.willbrinkman.BikeRepairTracker.models.BikeData;
+import com.willbrinkman.BikeRepairTracker.models.Item;
 import com.willbrinkman.BikeRepairTracker.models.repositories.BikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,12 +33,15 @@ public class SearchController {
     @PostMapping("results")
     public String SearchResults(@RequestParam String searchFilter, @RequestParam String searchQuery, Model model) {
         Iterable<Bike> bikes;
+        int numBikes = 0;
         if (searchQuery.toLowerCase().equals("all") || searchQuery.equals("")){
             bikes = bikeRepository.findAll();
         } else {
             bikes = BikeData.findFilterAndValue(searchFilter, searchQuery, bikeRepository.findAll());
         }
-
+        for(Bike bike  : bikes)
+            numBikes +=1 ;
+        model.addAttribute("numBikes", numBikes);
         model.addAttribute("filters", filterChoices);
         model.addAttribute("title", "Filter:" + filterChoices.get(searchFilter) +",  Query: "+ searchQuery);
         model.addAttribute("bikes", bikes);

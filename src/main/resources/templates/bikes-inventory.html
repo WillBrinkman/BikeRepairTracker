@@ -10,45 +10,41 @@
 
     <h1 style="text-align:center" th:text="${#strings.capitalizeWords(title)}"></h1>
 
-    <table style="width: 700px" class="bike-inventory">
-        <tr  th:each="bike : ${bikes}">
-            <td style="width: 300px">
-                <p>
-                    Bike Id:
-                    <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>
-                </p>
-                <p>
-                        Manufacturer:
-                        <a th:href="@{'/manufacturers/view/' + ${bike.manufacturer.id}}" th:text="${bike.manufacturer.name}"></a>
-                </p>
-                <p>
-                        Model:
-                    <a th:href="@{'/bikemodels/view/' + ${bike.bikemodel.id}}" th:text="${bike.bikemodel.name}"></a>
-                </p>
-                <p>
-                         Size:
-                    <a th:href="@{'/bikesizes/view/' + ${bike.bikesize.id}}" th:text="${bike.bikesize.name}"></a>
-                </p>
-                <p>
-                    Extra Info:
-                    <p th:text="${ bike.name}"></p>
-                </p>
+    <div class="row well" th:each="bike : ${bikes}">
+        <div class="col-md-6">
+            <p>
+                Bike Id:
+                <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>
+            </p>
+            <p>
+                Manufacturer:
+                <a th:href="@{'/manufacturers/view/' + ${bike.manufacturer.id}}" th:text="${bike.manufacturer.name}"></a>
+            </p>
+            <p>
+                Model:
+                <a th:href="@{'/bikemodels/view/' + ${bike.bikemodel.id}}" th:text="${bike.bikemodel.name}"></a>
+            </p>
+            <p>
+                Size:
+                <a th:href="@{'/bikesizes/view/' + ${bike.bikesize.id}}" th:text="${bike.bikesize.name}"></a>
+            </p>
+            <p>
+                Extra Info:
+                <span th:text="${ bike.name}"></span>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p>
+                Items Replaced:
+            <ul style="list-style: none;" th:each="item : ${bike.items}">
+                <li>
+                    <a th:href="@{'/items/view/' + ${item.id}}" th:text="${item.name}"></a>
+                </li>
+            </ul>
+            </p>
+        </div>
+    </div>
 
-            </td>
-            <td>
-                <p>
-                        Items Replaced:
-                    <ul style="list-style: none;" th:each="item : ${bike.items}">
-                        <li>
-                            <a th:href="@{'/items/view/' + ${item.id}}" th:text="${item.name}"></a>
-                        </li>
-                    </ul>
-                </p>
-
-
-            </td>
-        </tr>
-    </table>
 
 </div>
 
