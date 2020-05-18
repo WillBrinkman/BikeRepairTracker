@@ -9,6 +9,9 @@
 
 <form method="post" style="max-width:550px;">
 
+    <tr>
+        <td>
+
     <div class="form-group">
         <label th:for="manufacturer">Manufacturer</label>
         <select name="manufacturerId" >
@@ -16,7 +19,7 @@
                     th:text="${manufacturer.name}"
                     th:value="${manufacturer.id}"></option>
         </select>
-        <a th:href="@{'/manufacturers/new'}">Add Manufacturer</a>
+        <a th:href="@{'/manufacturers/new'}">Create New Manufacturer</a>
     </div>
 
     <div class="form-group">
@@ -26,7 +29,7 @@
                     th:text="${bikemodel.name}"
                     th:value="${bikemodel.id}"></option>
         </select>
-        <a th:href="@{'/bikemodels/new'}">Add Model</a>
+        <a th:href="@{'/bikemodels/new'}">Create New Model</a>
     </div>
 
     <div class="form-group">
@@ -36,26 +39,29 @@
                     th:text="${bikesize.name}"
                     th:value="${bikesize.id}"></option>
         </select>
-        <a th:href="@{'/bikesizes/new'}">Add Size</a>
+        <a th:href="@{'/bikesizes/new'}">Create New Size</a>
     </div>
 
-    <div class="form-group">
-        <label th:for="items">Items Replaced</label>
-        <th:block th:each="item : ${items}">
-            <input type="checkbox" name="items" th:value="${item.id}">
-            <label th:text="${item.name}"></label>
-        </th:block>
-        <a th:href="@{'/items/new'}">Add Items</a>
-    </div>
+
     <div class="form-group">
         <label th:for="name">Extra Info</label>
         <input class="form-control" th:field="${bike.name}" />
         <span th:errors="${bike.name}" class="error"></span>
     </div>
+        </td>
+        <td>
 
     <div class="form-group">
-
+        <label th:for="items">Items Replaced</label>
+        <th:block th:each="item : ${items}">
+            <p>
+            <input type="checkbox" name="items" th:value="${item.id}">
+            <label th:text="${item.name}"></label></p>
+        </th:block>
+        <a th:href="@{'/items/new'}">Create New Item</a>
     </div>
+            </td>
+    </tr>
 
     <input type="submit" value="Enter Bike In Database" />
 </form>

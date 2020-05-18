@@ -9,28 +9,28 @@
 
 <div class="container body-content">
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-    <h2 class = "centered">Bike Inventory</h2>
+    <h2 align="center" style="font-size: 50px">Bike Inventory</h2>
 </div>
 
 <table class="centeredTable">
-    <tr>
+    <tr style="font-size: 30px">
         <th>Manufacturers</th>
         <th>Bike Models</th>
         <th>Bike Sizes</th>
     </tr>
-    <tr>
-        <td>
-            <li style="list-style: none;" th:each="manufacturer : ${manufacturers}">
+    <tr >
+        <td align="center">
+            <li style="list-style: none; font-size:20px" th:each="manufacturer : ${manufacturers}">
                 <a th:href="@{/inventory/bikes(filter=manufacturer,value=${manufacturer.name})}" th:text="${manufacturer.name}"></a>
             </li>
         </td>
-        <td>
-            <li style="list-style: none;" th:each="bikemodel : ${bikemodels}">
+        <td align = "center">
+            <li style="list-style: none; font-size:20px" th:each="bikemodel : ${bikemodels}">
                 <a th:href="@{/inventory/bikes(filter=bikemodel,value=${bikemodel.name})}" th:text="${bikemodel.name}"></a>
             </li>
         </td>
-        <td>
-            <li text-align: center; display: inline-block; style="list-style: none;" th:each="bikesize : ${bikesizes}">
+        <td align = "center">
+            <li style="list-style: none; font-size:30px" th:each="bikesize : ${bikesizes}">
                 <a th:href="@{/inventory/bikes(filter=bikesize,value=${bikesize.name})}" th:text="${bikesize.name}"></a>
             </li>
         </td>

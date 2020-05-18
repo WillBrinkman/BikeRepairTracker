@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html xmlns:th="http://www.thymeleaf.org/" xmlns:width="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head">
 </head>
 <body>
@@ -8,11 +8,11 @@
 
 <div class="container body-content">
 
-    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <h1 style="text-align:center" th:text="${#strings.capitalizeWords(title)}"></h1>
 
-    <table class="bike-inventory">
-        <tr th:each="bike : ${bikes}">
-            <td>
+    <table style="width: 700px" class="bike-inventory">
+        <tr  th:each="bike : ${bikes}">
+            <td style="width: 300px">
                 <p>
                     Bike Id:
                     <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>
@@ -31,7 +31,7 @@
                 </p>
                 <p>
                     Extra Info:
-                    <a th:text="${ bike.name}"></a>
+                    <p th:text="${ bike.name}"></p>
                 </p>
 
             </td>

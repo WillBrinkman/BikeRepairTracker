@@ -8,9 +8,9 @@
 <h2 th:text="${message}"></h2>
 <nav th:replace="fragments :: page-header"></nav>
 
-<div class="bikes-inventory">
+<div class="bikes-inventory" style = "display:flex;">
+    <div style = "float:left, width: 50%;;">
 
-    <p th:text="${'ID: ' + bike.id}"></p>
     <p>
         Manufacturer: <a th:href="@{'/manufacturers/view/' + ${bike.manufacturer.id}}" th:text="${bike.manufacturer.name}"></a>
     </p>
@@ -20,17 +20,25 @@
     <p>
         Bike Size: <a th:href="@{'/bikesizes/view/' + ${bike.bikesize.id}}" th:text="${bike.bikesize.name}"></a>
     </p>
-    <p> Items Replaced:
-    <ul>
-        <li th:each="item : ${bike.items}">
-            <a th:href="@{'/items/view/' + ${item.id}}" th:text="${item.name}"></a>
-        </li>
-    </ul>
+
     <p>Extra Info:
         <a th:text="${bike.name}"></a>
     </p>
+<!--    <p>Created By:-->
+<!--        <a th:text="${bike.createdByUser}"></a>-->
+<!--    </p>-->
      <p><a th:href="@{/edit/{id}(id=${bike.id})}">Edit Bike</a></p>
-     <p><a th:href="@{/delete/{id}(id=${bike.id})}">Delete Bike</a></p>
+    <p><a th:href="@{/delete/{id}(id=${bike.id})}" class="btn btn-danger">Delete Bike</a>
+    </p>
+</div>
+    <div style = "float:left, width: 50%;">
+        <p> Items Replaced:
+        <ul>
+            <li style="list-style: none;" th:each="item : ${bike.items}">
+                <a th:href="@{'/items/view/' + ${item.id}}" th:text="${item.name}"></a>
+            </li>
+        </ul>
+    </div>
 
 </div>
 

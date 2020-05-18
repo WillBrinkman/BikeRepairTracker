@@ -14,18 +14,13 @@
     </div>
 
     <div class="form-group">
-        <label th:for="itemCost">Item Cost</label>
-        <input class="form-control" th:field="${skill.itemCost}" />
-        <span th:errors="${item.itemCost}" class="error"></span>
+        <label th:for="itemAndRepairCost">Item Cost</label>
+        <input class="form-control" th:field="${skill.itemAndRepairCost}" />
+        <span th:errors="${item.itemAndRepairCost}" class="error"></span>
     </div>
 
-    <div class="form-group">
-        <label th:for="repairCost">Repair Cost</label>
-        <input class="form-control" th:field="${skill.repairCost}" />
-        <span th:errors="${item.repairCost}" class="error"></span>
-    </div>
 
-    <input type="submit" value="Add Item" />
+    <input type="submit" value="Update Item" />
 </form>
 
 </body>

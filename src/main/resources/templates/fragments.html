@@ -14,14 +14,16 @@
 <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a th:href="@{/}" class="navbar-brand">Bike Repair Tracker</a>
+            <a th:href="@{/}" class="navbar-brand">Home</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+                <li></li>
                 <li><a th:href="@{/repairForm}">Repair Form</a></li>
+                <li><a>Cost Adjustment Form</a></li>
                 <li><a th:href="@{/search}">Search Bikes</a></li>
                 <li><a th:href="@{/inventory}">Inventory</a></li>
-                <li><a>Cost Adjustment Form</a></li>
+
                 <li sec:authorize="isAuthenticated()"><a th:text="Logout"  th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>

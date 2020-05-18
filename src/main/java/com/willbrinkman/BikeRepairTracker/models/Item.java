@@ -6,23 +6,26 @@ import java.util.Currency;
 import java.util.List;
 
 @Entity
-public class Item extends AbstractEntity{
+public class  Item extends AbstractEntity{
 
     public Item(){
 
     }
 
-    public Item(Double theItemCost, Double theRepairCost){
-        this.itemCost = theItemCost;
-        this.repairCost = theRepairCost;
-    }
 
     @ManyToMany(mappedBy = "items")
     private List<Bike> bikes;
 
-    private Double itemCost;
+    public Double getItemAndRepairCost() {
+        return itemAndRepairCost;
+    }
 
-    private Double repairCost;
+    public void setItemAndRepairCost(Double itemAndRepairCost) {
+        this.itemAndRepairCost = itemAndRepairCost;
+    }
+
+    private Double itemAndRepairCost;
+
 
     public List<Bike> getBikes() {
         return bikes;
@@ -32,20 +35,4 @@ public class Item extends AbstractEntity{
         this.bikes = bikes;
     }
 
-
-    public Double getItemCost() {
-        return itemCost;
-    }
-
-    public void setItemCost(Double itemCost) {
-        this.itemCost = itemCost;
-    }
-
-    public Double getRepairCost() {
-        return repairCost;
-    }
-
-    public void setRepairCost(Double repairCost) {
-        this.repairCost = repairCost;
-    }
 }

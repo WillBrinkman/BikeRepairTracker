@@ -22,8 +22,14 @@ public class Bike extends AbstractEntity{
     @ManyToMany
     private List<Item> items = new ArrayList<>();
 
+    private String createdByUser;
+
+
+
     public Bike() {
     }
+
+
 
     public Bike(Manufacturer aManufacturer, Bikemodel aBikemodel, Bikesize aBikesize, List<Item> theItems) {
         super();
@@ -31,6 +37,7 @@ public class Bike extends AbstractEntity{
         this.bikemodel = aBikemodel;
         this.bikesize = aBikesize;
         this.items = theItems;
+ //       this.createdByUser = theUser;
     }
 
     public Manufacturer getManufacturer() {
@@ -68,4 +75,12 @@ public class Bike extends AbstractEntity{
     public void setItems(List<Item> items) {
         this.items = items;
     }
+
+//    public String getUser() {
+//        return createdByUser;
+//    }
+//
+//    public void setUser(String user) {
+//        this.createdByUser = user;
+//    }
 }

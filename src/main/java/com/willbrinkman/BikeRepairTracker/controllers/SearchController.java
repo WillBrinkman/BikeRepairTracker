@@ -39,7 +39,7 @@ public class SearchController {
         }
 
         model.addAttribute("filters", filterChoices);
-        model.addAttribute("title", "Bikes registered with " + filterChoices.get(searchFilter) +" "+ searchQuery);
+        model.addAttribute("title", "Filter:" + filterChoices.get(searchFilter) +",  Query: "+ searchQuery);
         model.addAttribute("bikes", bikes);
 
         return "search";

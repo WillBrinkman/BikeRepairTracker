@@ -8,14 +8,14 @@
 
 <div class="container body-content">
 
-    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
 
     <form th:action="@{/search/results}" method = "post">
 
 
-        <p>
-            <h3>Search Bikes</h3>
 
+            <h3 align="center" style="font-size: 50px">Search Bikes</h3>
+        <p align="center">
         <span
                 class="form-group">
             <label th:for="column.key">Search filter:</label>
@@ -26,15 +26,16 @@
             </select>
         </span>
 
-
         </p>
 
 
-        <p>
+
+        <p align="center">
             <label for="searchQuery"></label>
             <input type="text" name="searchQuery" id="searchQuery" />
             <input type="submit" value="Search" />
         </p>
+        <h3 align="center" th:text="${#strings.capitalizeWords(title)}"></h3>
 
 
 
@@ -44,10 +45,10 @@
     <hr />
 
 
-    <table class="bikes-inventory">
+    <table align="center"  style="font-size: 20px" class="bikes-inventory">
         <tr th:each="bike : ${bikes}">
             <td>
-                <p>
+                <p style="font-weight: bold;">
                     Bike Id:
                     <a th:href="@{'/view/' + ${bike.id}}" th:text="${bike.id}"></a>
                 </p>
@@ -59,10 +60,10 @@
                     Manufacturer:
                     <a th:href="@{'/inventory/bikes?filter=manufacturer&value=' + ${bike.manufacturer.name}}" th:text="${bike.manufacturer.name}"></a>
                 </p>
-                <p>
-                    Model:
-                    <a th:href="@{'/bikemodels/view/' + ${bike.bikemodel.id}}" th:text="${bike.bikemodel.name}"></a>
-                </p>
+<!--                <p>-->
+<!--                    Model:-->
+<!--                    <a th:href="@{'/bikemodels/view/' + ${bike.bikemodel.id}}" th:text="${bike.bikemodel.name}"></a>-->
+<!--                </p>-->
                 <p>
                     Model:
                     <a th:href="@{'/inventory/bikes?filter=bikemodel&value=' + ${bike.bikemodel.name}}" th:text="${bike.bikemodel.name}"></a>
@@ -80,12 +81,19 @@
                 <p>
                     Items Replaced:
                 <ul th:each="item : ${bike.items}">
-                    <li>
+                    <li style="list-style: none;" >
                         <a th:href="@{'/items/view/' + ${item.id}}" th:text="${item.name}"></a>
                     </li>
                 </ul>
                 </p>
 
+            </td>
+
+            <td>
+                <p>
+                    Extra Info:
+                    <p th:text="${ bike.name}"></p>
+                </p>
             </td>
         </tr>
     </table>
