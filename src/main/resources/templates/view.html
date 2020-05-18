@@ -26,16 +26,15 @@
     </p>
 
         <p white-space="nowrap" > Repaired By:
-            <p display="inLine" th:text="${bike.userWhoRepaired}"></p>
+            <span  th:text="${#strings.capitalize(bike.userWhoRepaired)}"></span>
         </p>
 
         <p white-space="nowrap" > Bike Repair Cost:
-        <p display="inLine" th:text="'$'+${bike.RepairCost}"></p>
+        <span th:text="'$'+${bike.RepairCost}"></span>
         </p>
-<!--    <p>Created By:-->
-<!--        <a th:text="${bike.createdByUser}"></a>-->
-<!--    </p>-->
-     <button class="btn btn-info">Edit</button><a th:href="@{/edit/{id}(id=${bike.id})}">Edit Bike</a></p>
+
+
+     <p><a class="btn btn-info" th:href="@{/edit/{id}(id=${bike.id})}">Edit Bike</a></p>
     <p><a th:href="@{/delete/{id}(id=${bike.id})}" class="btn btn-danger">Delete Bike</a>
     </p>
 </div>
